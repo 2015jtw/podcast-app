@@ -52,7 +52,7 @@ export const createUser = internalMutation({
   args: {
     clerkId: v.string(),
     email: v.string(),
-    imageUrl: v.string(),
+    imageUrl: v.string(), 
     name: v.string(),
   },
   handler: async (ctx, args) => {

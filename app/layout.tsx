@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ConvexClerkProvider from "./providers/ConvexProviderWithClerk";
+import ConvexClerkProvider from "./providers/ConvexClerkProvider";
 
 export const metadata: Metadata = {
   title: "Podcast App",
