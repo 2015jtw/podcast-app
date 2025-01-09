@@ -38,7 +38,7 @@ export const getTopUserByPodcastCount = query({
           totalPodcasts: podcasts.length,
           podcast: sortedPodcasts.map((p) => ({
             podcastTitle: p.podcastTitle,
-            pocastId: p._id,
+            podcastId: p._id,
           })),
         };
       })
@@ -52,7 +52,7 @@ export const createUser = internalMutation({
   args: {
     clerkId: v.string(),
     email: v.string(),
-    imageUrl: v.string(), 
+    imageUrl: v.string(),
     name: v.string(),
   },
   handler: async (ctx, args) => {
@@ -60,7 +60,7 @@ export const createUser = internalMutation({
       clerkId: args.clerkId,
       email: args.email,
       imageUrl: args.imageUrl,
-      username: args.name,
+      name: args.name,
     });
   },
 });
