@@ -15,6 +15,7 @@ export default function RootLayout({
           className="size-full"
         />
       </div>
+
       {children}
     </main>
   );
