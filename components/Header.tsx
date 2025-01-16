@@ -12,7 +12,7 @@ const Header = ({
   return (
     <header className="flex items-center justify-between">
       {headerTitle ? (
-        <h1 className={(cn("text-18 font-bold text-white-1"), titleClassname)}>
+        <h1 className={cn("text-18 font-bold text-white-1", titleClassname)}>
           {headerTitle}
         </h1>
       ) : (

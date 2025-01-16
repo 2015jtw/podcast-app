@@ -64,7 +64,7 @@ const CreatePodcastPage = () => {
   const [voicePrompt, setVoicePrompt] = useState("");
 
   const { toast } = useToast();
-  const createPodcast = useMutation(api.podcasts.CreatePodcast);
+  const createPodcast = useMutation(api.podcasts.createPodcast);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
