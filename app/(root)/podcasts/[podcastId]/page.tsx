@@ -19,17 +19,12 @@ import { useUser } from "@clerk/nextjs";
 const PodcastDetailPage = ({
   params: { podcastId },
 }: {
-  params: { podcastId: string };
+  params: { podcastId: Id<"podcasts"> };
 }) => {
   const { user } = useUser();
-  // Cast the podcastId to Id<"podcasts">
-  const castedPodcastId = podcastId as Id<"podcasts">;
-
-  const podcast = useQuery(api.podcasts.getPodcastById, {
-    podcastId: castedPodcastId,
-  });
+  const podcast = useQuery(api.podcasts.getPodcastById, { podcastId });
   const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, {
-    podcastId: castedPodcastId,
+    podcastId,
   });
   const isOwner = user?.id === podcast?.authorId;
 
