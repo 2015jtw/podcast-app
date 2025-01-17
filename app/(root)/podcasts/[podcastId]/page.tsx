@@ -19,12 +19,17 @@ import { useUser } from "@clerk/nextjs";
 const PodcastDetailPage = ({
   params: { podcastId },
 }: {
-  params: { podcastId: Id<"podcasts"> };
+  params: { podcastId: string };
 }) => {
   const { user } = useUser();
-  const podcast = useQuery(api.podcasts.getPodcastById, { podcastId });
+  // Cast the podcastId to Id<"podcasts">
+  const castedPodcastId = podcastId as Id<"podcasts">;
+
+  const podcast = useQuery(api.podcasts.getPodcastById, {
+    podcastId: castedPodcastId,
+  });
   const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, {
-    podcastId,
+    podcastId: castedPodcastId,
   });
   const isOwner = user?.id === podcast?.authorId;
 
@@ -78,7 +83,7 @@ const PodcastDetailPage = ({
                   key={_id}
                   title={podcastTitle}
                   description={podcastDescription}
-                  imgUrl={imageUrl}
+                  imgUrl={imageUrl!}
                   podcastId={_id}
                 />
               )
