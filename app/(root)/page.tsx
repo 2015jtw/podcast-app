@@ -20,23 +20,12 @@ const Home = () => {
                 key={_id}
                 title={podcastTitle}
                 description={podcastDescription}
-                imgUrl={imageUrl}
+                imgUrl={imageUrl!}
                 podcastId={_id}
               />
             )
           )}
         </div>
-        {/* <div className="podcast_grid">
-          {podcastData.map(({ id, title, description, imgURL }) => (
-            <PodcastCard
-              key={id}
-              title={title}
-              description={description}
-              imgUrl={imgURL}
-              podcastId={id}
-            />
-          ))}
-        </div> */}
       </section>
     </div>
   );

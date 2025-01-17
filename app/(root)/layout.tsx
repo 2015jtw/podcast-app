@@ -1,5 +1,5 @@
 import LeftSidebar from "@/components/left-sidebar";
-import MobileNav from "@/components/mobile-nav";
+import MobileNav from "@/components/MobileNav";
 import RightSidebar from "@/components/right-sidebar";
 import Image from "next/image";
 import { Toaster } from "@/components/ui/toaster";
