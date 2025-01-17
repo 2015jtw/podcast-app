@@ -30,6 +30,7 @@ const EmblaCarousel = ({ fansLikeDetail }: CarouselProps) => {
   );
 
   const slides =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fansLikeDetail?.filter((item: any) => item?.totalPodcasts > 0) || [];
 
   if (slides.length === 0) {

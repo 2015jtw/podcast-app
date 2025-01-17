@@ -85,6 +85,7 @@ const CreatePodcastPage = () => {
         setIsSubmitting(false);
         throw new Error("Please generate audio and image before submitting");
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const podcast = await createPodcast({
         podcastTitle: data.podcastTitle,
         podcastDescription: data.podcastDescription,
