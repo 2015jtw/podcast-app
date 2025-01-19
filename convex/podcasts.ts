@@ -159,15 +159,16 @@ export const getPodcastBySearch = query({
       return titleSearch;
     }
 
-    return await ctx.db
+    const descriptionSearch = await ctx.db
       .query("podcasts")
       .withSearchIndex("search_body", (q) =>
-        q.search("podcastDescription" || "podcastTitle", args.search)
+        q.search("podcastDescription", args.search)
       )
       .take(10);
+
+    return descriptionSearch;
   },
 });
-
 // this mutation will update the views of the podcast.
 export const updatePodcastViews = mutation({
   args: {
