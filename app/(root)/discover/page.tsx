@@ -1,68 +1,56 @@
 "use client";
 
-// React/Next
-import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-
-// UI
 import EmptyState from "@/components/EmptyState";
-import PodcastCard from "@/components/podcast-card";
+import LoaderSpinner from "@/components/LoaderSpinner";
 import SearchBar from "@/components/SearchBar";
-
-// Convex
+import PodcastCard from "@/components/podcast-card";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
+import React from "react";
 
-const DiscoverPage = () => {
-  const searchParams = useSearchParams();
-  const search = searchParams?.get("search") || ""; // Safely retrieve the "search" parameter
-  const [currentSearch, setCurrentSearch] = useState(search);
-
-  useEffect(() => {
-    setCurrentSearch(search);
-  }, [search]);
-
-  const podcastData = useQuery(api.podcasts.getPodcastBySearch, {
-    search: currentSearch,
+const Discover = ({
+  searchParams: { search },
+}: {
+  searchParams: { search: string };
+}) => {
+  const podcastsData = useQuery(api.podcasts.getPodcastBySearch, {
+    search: search || "",
   });
+
   return (
     <div className="flex flex-col gap-9">
       <SearchBar />
       <div className="flex flex-col gap-9">
-        <h1 className="text-white-1 text-20 font-bold">
-          {!currentSearch
-            ? "Discover Trending Podcasts"
-            : "Search Results for: "}{" "}
-          {currentSearch && (
-            <span className="text-white-2">{currentSearch}</span>
-          )}
+        <h1 className="text-20 font-bold text-white-1">
+          {!search ? "Discover Trending Podcasts" : "Search results for "}
+          {search && <span className="text-white-2">{search}</span>}
         </h1>
-        {podcastData ? (
+        {podcastsData ? (
           <>
-            {podcastData.length > 0 ? (
+            {podcastsData.length > 0 ? (
               <div className="podcast_grid">
-                {podcastData?.map(
+                {podcastsData?.map(
                   ({ _id, podcastTitle, podcastDescription, imageUrl }) => (
                     <PodcastCard
                       key={_id}
+                      imgUrl={imageUrl!}
                       title={podcastTitle}
                       description={podcastDescription}
-                      imgUrl={imageUrl!}
                       podcastId={_id}
                     />
                   )
                 )}
               </div>
             ) : (
-              <EmptyState title="No results found..." />
+              <EmptyState title="No results found" />
             )}
           </>
         ) : (
-          <EmptyState title="No results found..." />
+          <LoaderSpinner />
         )}
       </div>
     </div>
   );
 };
 
-export default DiscoverPage;
+export default Discover;
