@@ -105,10 +105,17 @@ interface PageProps {
   params: {
     podcastId: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default function PodcastPage({ params }: PageProps) {
+const PodcastPage = ({
+  params,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  searchParams,
+}: PageProps) => {
   const podcastId = params.podcastId as Id<"podcasts">;
 
   return <PodcastDetailClient podcastId={podcastId} />;
-}
+};
+
+export default PodcastPage;
