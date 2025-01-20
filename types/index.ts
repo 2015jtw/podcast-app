@@ -28,13 +28,13 @@ export interface TopPodcastersProps {
 export interface PodcastProps {
   _id: Id<"podcasts">;
   _creationTime: number;
-  audioStorageId?: Id<"_storage"> | null | undefined;
+  audioStorageId: Id<"_storage"> | null;
   user: Id<"users">;
   podcastTitle: string;
   podcastDescription: string;
-  audioUrl?: string | undefined;
-  imageUrl?: string | undefined;
-  imageStorageId?: Id<"_storage"> | null | undefined;
+  audioUrl: string | null;
+  imageUrl: string | null;
+  imageStorageId: Id<"_storage"> | null;
   author: string;
   authorId: string;
   authorImageUrl: string;
@@ -86,7 +86,7 @@ export interface PodcastDetailPlayerProps {
   isOwner: boolean;
   imageUrl: string;
   podcastId: Id<"podcasts">;
-  imageStorageId?: Id<"_storage">;
+  imageStorageId: Id<"_storage">;
   audioStorageId: Id<"_storage">;
   authorImageUrl: string;
   authorId: string;

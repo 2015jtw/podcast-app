@@ -32,18 +32,7 @@ const PodcastDetailPlayer = ({
 
   const handleDelete = async () => {
     try {
-      if (imageStorageId && audioStorageId) {
-        await deletePodcast({ podcastId, imageStorageId, audioStorageId });
-        toast({
-          title: "Podcast deleted",
-        });
-        router.push("/");
-      } else {
-        toast({
-          title: "Error deleting podcast",
-          variant: "destructive",
-        });
-      }
+      await deletePodcast({ podcastId, imageStorageId, audioStorageId });
       toast({
         title: "Podcast deleted",
       });
